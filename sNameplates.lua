@@ -1,5 +1,5 @@
 
-sNameplates = LibStub("AceAddon-3.0"):NewAddon("sBuff", "AceEvent-3.0")
+sNameplates = LibStub("AceAddon-3.0"):NewAddon("sNameplates", "AceEvent-3.0")
 local sNameplates = sNameplates
 
 local LibNameplate = LibStub("LibNameplate-1.0", true)

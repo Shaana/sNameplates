@@ -1,0 +1,11 @@
+## Interface: 40300
+## Title: sNameplate
+## Notes: Simple nameplates
+## Author: Share
+## Version: 0.1 beta
+## RequiredDeps: Ace3
+## OptionalDeps: LibNameplate-1.0
+## X-Embeds: Ace3
+
+config.lua
+sNameplates.lua

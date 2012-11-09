@@ -59,10 +59,17 @@ local function Prepare_HealthBar(plate)
 	
 	frame.health_bar:SetValue(LibNameplate:GetHealthMax(plate)/2)
 	
-	for v,k in pairs(plate.parent:GetRegions()) do
-		print(v,k)
-		--v:Hide()
-	end
+	local threatGlow, healthBorder, highlight, name, level, bossIcon, raidIcon, eliteIcon = plate:GetRegions()		
+	local _, castbarBorder, castNoInterupt, castIcon = castBar:GetRegions()
+	healthBorder:Hide()
+	name:Hide()
+	
+	--for v,k in ipairs(plate:GetRegions()) do
+	--	local threatGlow, healthBorder, highlight, name, level, bossIcon, raidIcon, eliteIcon = plate:GetRegions()		
+	--	local _, castbarBorder, castNoInterupt, castIcon = castBar:GetRegions()
+	--	healthBorder:Hide()
+	--	name:Hide()
+	--end
 	
 end
 

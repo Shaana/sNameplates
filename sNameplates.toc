@@ -1,5 +1,5 @@
 ## Interface: 40300
-## Title: sNameplate
+## Title: sNameplates
 ## Notes: Simple nameplates
 ## Author: Share
 ## Version: 0.1 beta

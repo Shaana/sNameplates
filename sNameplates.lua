@@ -25,3 +25,18 @@ end
 function sNameplates:OnDisable()
 
 end
+
+function sNameplates:LibNameplate_TargetNameplate(_, plate)
+	local plateName = LibNameplate:GetName(plate)
+	local health_frame = LibNameplate:GetHealthBar(plate)
+	print(plateName)
+	print(health_frame)
+
+end
+
+function sNameplates:test()
+	for i, plate in LibNameplate:IteratePlates() do 
+		print(plate .." belongs to "..LibNameplate:GetName(plate )..".")
+	end
+
+end

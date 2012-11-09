@@ -46,12 +46,6 @@ function sNameplates:test()
 end
 
 
-function sNameplates:PrepareFrames(plate)
-	plate.frame = {}
-	plate.parent = LibNameplate:GetHealthBar(plate):GetParent()
-	
-end
-
 local function Prepare_HealthBar(plate)
 	frame = plate.frame
 	
@@ -59,14 +53,32 @@ local function Prepare_HealthBar(plate)
 	frame.health_bar:SetStatusBarTexture("Interface\\AddOns\\sNameplates\\media\\bar")
 
 	frame.health_bar:ClearAllPoints()
-	--frame.health:SetSize(sizes.width-2, sizes.height-2)
+	frame.health_bar:SetSize(300, 50)
 	frame.health_bar:SetPoint('BOTTOMLEFT', 20, 100)
+	frame.health_bar:SetMinMaxValues(0, LibNameplate:GetHealthMax())
 	
+	frame.health_bar:SetValue(LibNameplate:GetHealthMax()/2)
+	
+	for v,k in pairs(plate:GetRegions()	) do
+		v:Hide()
+	end
 	
 end
 
 local function Prepare_CastBar(plate)
 
 end
+
+
+function sNameplates:PrepareFrames(plate)
+	plate.frame = {}
+	plate.parent = LibNameplate:GetHealthBar(plate):GetParent()
+	
+	Prepare_HealthBar(plate)
+	
+	
+end
+
+
 
 

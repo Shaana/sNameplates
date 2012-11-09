@@ -55,12 +55,13 @@ local function Prepare_HealthBar(plate)
 	frame.health_bar:ClearAllPoints()
 	frame.health_bar:SetSize(300, 50)
 	frame.health_bar:SetPoint('BOTTOMLEFT', 20, 100)
-	frame.health_bar:SetMinMaxValues(0, LibNameplate:GetHealthMax())
+	frame.health_bar:SetMinMaxValues(0, LibNameplate:GetHealthMax(plate))
 	
-	frame.health_bar:SetValue(LibNameplate:GetHealthMax()/2)
+	frame.health_bar:SetValue(LibNameplate:GetHealthMax(plate)/2)
 	
-	for v,k in pairs(plate:GetRegions()	) do
-		v:Hide()
+	for v,k in pairs(plate.parent:GetRegions()) do
+		print(v,k)
+		--v:Hide()
 	end
 	
 end

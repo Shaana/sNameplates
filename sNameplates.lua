@@ -45,22 +45,14 @@ function sNameplates:test()
 
 end
 
+local function Prepare_HideBlizzardFrames(plate)
 
-local function Prepare_HealthBar(plate)
-	frame = plate.frame
-	
-	frame.health_bar = CreateFrame("StatusBar", nil, plate.parent)
-	frame.health_bar:SetStatusBarTexture("Interface\\AddOns\\sNameplates\\media\\bar")
-
-	frame.health_bar:ClearAllPoints()
-	frame.health_bar:SetSize(300, 50)
-	frame.health_bar:SetPoint('BOTTOMLEFT', 20, 100)
-	frame.health_bar:SetMinMaxValues(0, LibNameplate:GetHealthMax(plate))
-	
-	frame.health_bar:SetValue(LibNameplate:GetHealthMax(plate)/2)
+	local healthBar, castBar = plate:GetChildren()
+	healthBar:Hide()
+	castBar:Hide()
 	
 	local threatGlow, healthBorder, highlight, name, level, bossIcon, raidIcon, eliteIcon = plate:GetRegions()		
-	local _, castbarBorder, castNoInterupt, castIcon = castBar:GetRegions()
+	--local _, castbarBorder, castNoInterupt, castIcon = castBar:GetRegions()
 	healthBorder:Hide()
 	name:Hide()
 	
@@ -71,17 +63,69 @@ local function Prepare_HealthBar(plate)
 	--	name:Hide()
 	--end
 	
+
 end
 
+--for better handling/displaying we create two seperate frames
+--one for the nameplate itself (castbar, healthbar, name, ...)
+--the other one aura display on the target (for now we keep it possible to display dots and hots)
+local function Prepare_BaseFrames(plate)
+	frame = plate.frame
+	frame.base = CreateFrame("Frame",nil, plate)
+	frame.base_aura = CreateFrame("Frame",nil, plate)
+	--TODO anchors here
+	--maybe some color to see it ?
+	--size
+end
+
+local function Prepare_HealthBar(plate)
+	frame = plate.frame
+	parent = plate.frame.base
+	if not plate.frame.base then
+		--TODO just create baseframes here then? or better let the addon fuck up?
+		return
+	end
+	frame.health_bar = CreateFrame("StatusBar", nil, parent)
+	frame.health_bar:SetStatusBarTexture("Interface\\AddOns\\sNameplates\\media\\bar")
+
+	frame.health_bar:ClearAllPoints()
+	frame.health_bar:SetSize(300, 50)
+	frame.health_bar:SetPoint('BOTTOMLEFT', 20, 100)
+	frame.health_bar:SetMinMaxValues(0, LibNameplate:GetHealthMax(plate))
+	
+	--frame.health_bar:SetValue(LibNameplate:GetHealthMax(plate)/2)
+	
+end
+
+local function Prepare_NameText(plate)
+
+end
+
+local function Prepare_HealthText(plate)
+
+end
+
+local function Prepare_HealthTextPercent(plate)
+
+end
+
+
 local function Prepare_CastBar(plate)
+
+end
+
+local function Prepare_CastIcon(plate)
 
 end
 
 
 function sNameplates:PrepareFrames(plate)
 	plate.frame = {}
+	plate.text = {}
 	plate.parent = LibNameplate:GetHealthBar(plate):GetParent()
 	
+	--always call Prepare_BaseFrames first!
+	Prepare_BaseFrames(plate)
 	Prepare_HealthBar(plate)
 	
 	

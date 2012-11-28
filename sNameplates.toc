@@ -7,5 +7,6 @@
 ## OptionalDeps: LibNameplate-1.0
 ## X-Embeds: Ace3
 
-config.lua
-sNameplates.lua
+libs.xml
+load.xml
+modules.xml
